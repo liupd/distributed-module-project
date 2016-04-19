@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wa.net.myBatisDao.TestitemTypeDao">
+
+	<sql id="Base_Column_List">
+		 id, business_key, create_time, is_object, name, update_time, is_delete
+	</sql>
+
+	<select id="selectListByProps" parameterType="cn.wa.net.domain.TestitemType" resultType="cn.wa.net.domain.TestitemType">
+		SELECT  <include refid="Base_Column_List"/>  FROM bd_testitem_type WHERE 1=1
+		<if test="isDelete !=null and isDelete !=''">
+			and is_delete = #{isDelete}
+		</if>
+		<if test="name!=null and name !=''">
+			and name like concat('%',#{name},'%')
+		</if>
+		order  by id desc
+	</select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        select max(id) as maxId  from bd_testitem_type
+    </select>
+
+</mapper>

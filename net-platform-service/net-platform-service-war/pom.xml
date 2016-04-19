@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>net-platform-service-parent</artifactId>
+        <groupId>cn.wa.net</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>net-platform-service-war</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
+    <packaging>war</packaging>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+         <platform.version>1.0-SNAPSHOT</platform.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>cn.wa.net</groupId>
+            <artifactId>net-platform-service-base</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.wa.net</groupId>
+            <artifactId>net-platform-service-basicinfo</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>net-platform-service</finalName>
+    </build>
+
+</project>

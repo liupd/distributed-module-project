@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wa.net.myBatisDao.SubjectsDao">
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        id,business_key, create_time, name,update_time, user_business_key, is_delete,
+    </sql>
+    <!--删除能力层次-->
+    <delete id="deleteSubjects" parameterType="java.lang.String" >
+        update   bd_subjects set is_delete = #{status} WHERE id = #{id}
+    </delete>
+
+    <select id="selectListForPage" resultType="cn.wa.net.domain.Subjects" parameterType="cn.wa.net.domain.Subjects">
+        select  id,name,business_key AS businessKey, create_time AS createTime,update_time as updateTime, user_business_key AS userBusinessKey, is_delete AS isDelete
+        FROM bd_subjects WHERE  1=1
+         <if test="name !=null and name !=''">
+            and name LIKE concat('%',#{name},'%')
+         </if>
+        <if test="isDelete !=null and isDelete !=''">
+            and is_delete = #{isDelete}
+        </if>
+        order  by id desc
+    </select>
+
+    <select id="findAllSubject" resultType="java.util.HashMap">
+        select  id,business_key AS businessKey, create_time AS createTime, user_business_key AS userBusinessKey, is_delete AS isDelete,name
+        FROM bd_subjects WHERE 1=1 AND is_delete = 'N'
+    </select>
+
+</mapper>

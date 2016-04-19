@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wa.net.myBatisDao.SysLogDao">
+    <!--分页 查询教材 日志-->
+  <select id="findSysLog" parameterType="cn.wa.net.formbean.SysLogVo"
+        resultType="cn.wa.net.domain.SysLog">
+             select
+              id as id,
+              type as type,
+              app_key as appKey,
+              app_remark as appRemark,
+              user_key as userKey,
+              user_name   as  userName,
+              agent   as  agent,
+              request_url  as requestUrl,
+              method  as method,
+              params  as params,
+              remote_addr  as remoteAddr,
+              result as result,
+              request_time as requestTime
+             from bd_syslog where 1=1
+      <if test="type != null and type !=''">
+             and type = #{type}
+      </if>
+      <if test="appKey != null and appKey !=''">
+          and app_key  like concat('%', #{appKey}, '%')
+      </if>
+      <if test="userKey != null and userKey !=''">
+      and user_key like concat('%',  #{userKey}, '%')
+      </if>
+      <if test="appRemark != null and appRemark !=''">
+          and app_remark like concat('%',  #{appRemark}, '%')
+      </if>
+      <if test="userName != null and userName !=''">
+          and user_name like concat('%',  #{userName}, '%')
+      </if>
+      <if test="requestUrl != null and requestUrl !=''">
+          and request_url like concat('%', #{requestUrl}, '%')
+      </if>
+      <if test="method != null and method !=''">
+          and method = #{method}
+      </if>
+      <if test="remoteAddr != null and remoteAddr !=''">
+          and remote_addr like concat('%', #{remoteAddr}, '%')
+      </if>
+      order by id ASC ,requestTime DESC
+      limit #{startNum},#{pageSize}
+  </select>
+    <!-- 查询日志 总数-->
+    <select id="findSysLogCount" parameterType="cn.wa.net.formbean.SysLogVo"
+            resultType="java.lang.Integer">
+        select
+        count(1)
+        from bd_syslog where 1=1
+        <if test="type != null and type !=''">
+            and type = #{type}
+        </if>
+        <if test="appKey != null and appKey !=''">
+            and app_key = #{appKey}
+        </if>
+        <if test="userKey != null and userKey !=''">
+            and user_key = #{userKey}
+        </if>
+        <if test="userName != null and userName !=''">
+            and user_name = #{userName}
+        </if>
+        <if test="requestUrl != null and requestUrl !=''">
+            and request_url = #{requestUrl}
+        </if>
+        <if test="method != null and method !=''">
+            and method = #{method}
+        </if>
+        <if test="remoteAddr != null and remoteAddr !=''">
+            and remote_addr = #{remoteAddr}
+        </if>
+    </select>
+    <!-- 增加日志 -->
+  <insert id="addSysLog" parameterType="cn.wa.net.domain.SysLog">
+     insert into bd_syslog(id,type,app_key,app_remark,user_key,user_name,agent,
+     request_url,method,params,remote_addr,result,request_time)
+     values(#{id},#{type},#{appKey},#{appRemark},#{userKey},#{userName},#{agent},
+     #{requestUrl},#{method},#{params},#{remoteAddr},#{result},#{requestTime})
+  </insert>
+    <!-- 删除日志-->
+    <delete id="delSysLog" parameterType="java.lang.String">
+        delete from bd_syslog where id=#{id}
+    </delete>
+</mapper>

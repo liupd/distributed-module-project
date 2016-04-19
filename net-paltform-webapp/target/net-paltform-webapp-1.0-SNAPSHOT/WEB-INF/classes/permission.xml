@@ -1,0 +1,9 @@
+<prmission>
+    <role type="BASEDATA">
+        <actions id="course" value="course" name="基础数据管理" style="icon-credit-card">
+            <action id="phases" value="phases" name="学段管理" style="icon-dashboard"/>
+            <action id="subject" value="subject" name="学科管理" style="icon-dashboard"/>
+            <action id="textbook" value="textbook" name="教材版本管理" style="icon-dashboard"/>
+        </actions>
+    </role>
+</prmission>

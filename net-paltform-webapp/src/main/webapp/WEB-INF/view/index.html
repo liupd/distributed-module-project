@@ -1,0 +1,15 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<body>
+    <p id="index_info"></p>
+    <script type="text/javascript">
+        var dateTime=new Date();
+        var year=dateTime.getFullYear();
+        var month=dateTime.getMonth()+1;
+        var date=dateTime.getDate();
+        var hh=dateTime.getHours();
+        var mm=dateTime.getMinutes();
+        var ss=dateTime.getSeconds();
+        var info=document.getElementById("index_info");
+        info.innerHTML=year+"年"+month+"月"+date+"日"+hh+"时"+mm+"分"+ss+"秒"+"启动成功";
+    </script>
+</body>

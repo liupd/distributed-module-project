@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wa.net.myBatisDao.ConfigServicesDao">
+
+   <sql id="static_config_column">
+       SELECT name,value FROM  bd_static_config
+   </sql>
+
+   <select id="getAllCategroy" resultType="cn.wa.net.formbean.StaticConfigVo">
+       <include refid="static_config_column"/>
+       WHERE type="categroy" ORDER BY sort ASC
+   </select>
+
+   <select id="getAllQuestionType" resultType="cn.wa.net.formbean.StaticConfigVo">
+       <include refid="static_config_column"/>
+       WHERE type="questionType" ORDER BY sort ASC
+   </select>
+
+    <select id="getAllEbookType" resultType="cn.wa.net.formbean.StaticConfigVo">
+        <include refid="static_config_column"/>
+        WHERE type="ebookType" ORDER BY sort ASC
+    </select>
+
+    <select id="getAllResourceCategroy" resultType="cn.wa.net.formbean.StaticConfigVo">
+        <include refid="static_config_column"/>
+        WHERE type="resourceCategroy" ORDER BY sort ASC
+    </select>
+
+    <select id="getAllResourceTeachType" resultType="cn.wa.net.formbean.StaticConfigVo">
+        <include refid="static_config_column"/>
+        WHERE type="resourceTeachType" ORDER BY sort ASC
+    </select>
+
+    <select id="getAllTextbookType" resultType="cn.wa.net.formbean.StaticConfigVo">
+        <include refid="static_config_column"/>
+        WHERE type="textbookType" ORDER BY sort ASC
+    </select>
+
+</mapper>
