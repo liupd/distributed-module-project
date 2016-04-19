@@ -8,6 +8,8 @@
 
 可采用postman测试 
 
+schema\sql_file_data  在webapp下先运行所有sql文件
+
 很不错的学习扩展
 
 开发者：1326465728@qq.com
